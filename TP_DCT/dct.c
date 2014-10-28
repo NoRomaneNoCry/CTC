@@ -48,8 +48,16 @@ void dct(int   inverse,		/* ==0: DCT, !=0 DCT inverse */
 {
 	float ** DCT ;
 	DCT = allocation_matrice_carree_float(nbe);
-	//transposition_matrice_carree(int nbe, float **a, float **a_t)
-	//produit_matrice_carree_vecteur(int nbe, float **m, const float *v, float *resultat)
+	coef_dct(nbe, DCT);
+	if(inverse == 0) {
+		produit_matrice_carree_vecteur(nbe, DCT, entree, sortie);
+	}
+	else {
+		float ** DCTtrans = allocation_matrice_carree_float(nbe);
+		transposition_matrice_carree(nbe, DCT, DCTtrans);
+		produit_matrice_carree_vecteur(nbe, DCTtrans, entree, sortie);
+		liberation_matrice_carree_float(DCTtrans, nbe);
+	}
 	
 	liberation_matrice_carree_float(DCT, nbe);
 }
