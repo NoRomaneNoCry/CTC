@@ -21,19 +21,19 @@ void lire_ligne_tst()
   lire_ligne(f, ligne) ;
   if ( strcmp(ligne, "a b c\n") )
     {
-      eprintf("Pas bon\n") ;
+      eprintf("Pas bon1\n") ;
       return ;
     }
   lire_ligne(f, ligne) ;
   if ( strcmp(ligne, "d e f\n") )
     {
-      eprintf("Pas bon\n") ;
+      eprintf("Pas bon2\n") ;
       return ;
     }
   lire_ligne(f, ligne) ;
   if ( strcmp(ligne, "g h i\n") )
     {
-      eprintf("Pas bon\n") ;
+      eprintf("Pas bon3\n") ;
       return ;
     }
   lire_ligne(f, ligne) ;
