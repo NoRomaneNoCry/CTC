@@ -28,7 +28,7 @@ void compresse_test(int nb_t, float *t, int nb_ok, int *ok)
 	{
 	  if ( get_entier_intstream(entier) != ok[i] )
 	    {
-	      eprintf("Pour l'entier %d, j'attendais %d\n", i, ok[i]) ;
+	      eprintf("(entier)Pour l'entier %d, j'attendais %d\n", i, ok[i]) ;
 	      return ;
 	    }
 	}
@@ -36,7 +36,7 @@ void compresse_test(int nb_t, float *t, int nb_ok, int *ok)
 	{
 	  if ( get_entier_intstream(entier_signe) != ok[i] )
 	    {
-	      eprintf("Pour l'entier %d, j'attendais %d\n", i, ok[i]) ;
+	      eprintf("(signe)Pour l'entier %d, j'attendais %d\n", i, ok[i]) ;
 	      return ;
 	    }
 	}

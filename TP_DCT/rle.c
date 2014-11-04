@@ -44,35 +44,19 @@
 void compresse(struct intstream *entier, struct intstream *entier_signe
 	       , int nbe, const float *dct)
 {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	int nb_zero = 0;
+	int i;
+	for(i = 0; i < nbe; i++) {
+		if(round(dct[i]) == 0)
+			nb_zero++;
+		else {
+			put_entier_intstream(entier, nb_zero);
+			nb_zero = 0;
+			put_entier_intstream(entier_signe, round(dct[i]));	
+		}
+	}
+	if(nb_zero != 0)
+		put_entier_intstream(entier, nb_zero);
 }
 
 /*
