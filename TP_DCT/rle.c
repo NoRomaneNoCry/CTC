@@ -66,21 +66,14 @@ void compresse(struct intstream *entier, struct intstream *entier_signe
 void decompresse(struct intstream *entier, struct intstream *entier_signe
 		 , int nbe, float *dct)
 {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	int i, j, nb_zero;
+	for(i = 0; i < nbe; i++) {
+		nb_zero = get_entier_intstream(entier);
+		for(j = 0; j < nb_zero; j++) {
+			dct[i + j] = 0;
+		}
+		i += nb_zero;
+		if(i < nbe)
+			dct[i] = get_entier_intstream(entier_signe);
+	}
 }
