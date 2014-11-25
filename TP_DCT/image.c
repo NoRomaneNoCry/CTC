@@ -9,10 +9,11 @@
 
 void lire_ligne(FILE *f, char *ligne)
 {
-	size_t maxligne = MAXLIGNE;
-	do {
-		int i = getline(&ligne, &maxligne, f);
-	} while(ligne[0] == '#');
+	while(fgets(ligne, MAXLIGNE, f) != NULL) {
+		if(ligne[0] != '#')
+			break ;
+	}
+	ligne = NULL;
 }
 
 /*
@@ -55,61 +56,41 @@ void liberation_image(struct image* image)
 
 struct image* lecture_image(FILE *f)
 {
+	struct image * image_lue;
+	char * ligne;
+	ALLOUER(ligne, MAXLIGNE);
+	int largeur, hauteur, i, j;
 
+	/** Initialisation de la structure */
+	lire_ligne(f, ligne);
+	lire_ligne(f, ligne);
+	largeur = atoi(strtok(ligne, " "));
+	hauteur = atoi(strtok(NULL, " "));
+	image_lue = allocation_image(hauteur, largeur);
+	lire_ligne(f, ligne);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-return 0 ; /* pour enlever un warning du compilateur */
+	/** Récupération des informations des pixels */
+	for(i = 0; i < hauteur; i++) {
+		for(j = 0; j < largeur; j++) {
+			image_lue->pixels[i][j] = fgetc(f);
+		}
+	}
+	return image_lue ;
 }
 
 /*
  * Écriture de l'image (toujours au format PGM)
+
  */
 
 void ecriture_image(FILE *f, const struct image *image)
 {
+	int i, j;
+	fprintf(f, "P5\n%d %d\n255\n", image->largeur, image->hauteur);
 
-
-
-
-
-
-
-
-
-
+	for(i = 0; i < image->hauteur; i++) {
+		for(j = 0; j < image->largeur; j++) {
+			fputc(image->pixels[i][j], f);
+		}
+	}
 }
