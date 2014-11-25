@@ -91,12 +91,8 @@ void zigzag(int nbe, int *y, int *x)
     }
     else {
       montee = 0;
-      if(ligne == 0) {
-        if(colonne != nbe - 1)
-          colonne++;
-        else
-          ligne++;
-      }
+      if(ligne == 0 && colonne != nbe - 1)
+        colonne++;
       else 
         ligne++;
     }
@@ -108,12 +104,8 @@ void zigzag(int nbe, int *y, int *x)
     }
     else {
       montee = 1;
-      if(colonne == 0) {
-        if(ligne != nbe - 1)
-          ligne++;
-        else
-          colonne++;
-      }
+      if(colonne == 0 && ligne != nbe - 1)
+        ligne++;
       else 
         colonne++;
     }
